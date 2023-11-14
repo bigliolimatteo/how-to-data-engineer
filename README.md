@@ -27,8 +27,8 @@ The goal of this workshop would be to edit the pipeline (or the data) in order f
 After having installed Docker you can follow these steps:
 
 1. Activate Docker (simply open the app downloaded above)
-2. Open a terminal on windows or mac
-3. Position youself inside this repo
+2. Clone this repository
+3. Open a terminal on windows or mac and position youself inside this repo
 4. Perform a `docker compose up airflow-init` which will initialize and download the images
 5. Perform a `docker compose up` which will start the containers (note that the terminal will stay attached to the working process, so dont expect it to "terminate the command")
 
@@ -45,7 +45,7 @@ After these 5 steps you should be able to reach the following services from your
     server password: airflow
     ```
 
-    You will find two database, the one we are interested in is called `postgres` in which you will find a table `raw_data` under `public` schema
+    You will find two databases, the one we are interested in is called `postgres` in which you will find a table `raw_data` under `public` schema
 
 - [Airflow](http://localhost:8080/) which is the DAG scheduler, simply open the link, insert the following
     ```
@@ -60,15 +60,17 @@ After these 5 steps you should be able to reach the following services from your
     password: admin
     ```
     and you should find a dashboard called `airflow` (on the left side you can navigate to dashboards)
-
+    **NOTE** that the dashboard will be empty at the beginning because we still need to activate the pipeline to populate it.
 
 ## What to do
+
+Before starting the last thing that we need to do is to activate the pipeline. To do this you can just click in the toggle at the left of the **raw_data_load** pipeline in the [Airflow](http://localhost:8080/) dashboard.
 
 Now that everything is up to speed you should be able to see from the dashboard that there are different issues with the data (reported below). 
 
 Your goal would be to edit the file `dags/raw_data_load.py` in order to fix the issues and recompute the data.
 
-Not that when you edit the pipeline file you don't need to stop and start the docker container as it will be updated automatically, you can just restart the pipeline by `clearing` the state of the current execution.
+Not that when you edit the pipeline file you don't need to stop and start the docker container as it will be updated automatically, you can just restart the pipeline by `clearing` the state of the current execution. This can be achieved directly from the airflow dashboard.
 
 
 ## Issues to solve (from easier to harder)
